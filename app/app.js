@@ -12,11 +12,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.get('/', function(req, res){
-	res.send('running')
-})
-
-
 app.route('/twilio')
 	.all(function(req, res){
 		var q = req.param('q')
@@ -55,16 +50,19 @@ var wikiArticle = function(req, res, query) {
 }
 
 var wikiSearch = function(req, res, query) {
-
 	var queryEncoded = encodeURIComponent(query)
 		,queryUrl = 'http://en.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&srprop&format=json&srsearch='+queryEncoded
 
 	request(queryUrl, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var wikiContent = JSON.parse(body)
-				,wikiTitle = wikiContent.query.search[0].title
+				, wikiSearch = wikiContent.query.search[0]
 
-			wikiArticle(req, res, wikiTitle)
+				if (wikiSearch) {
+					wikiArticle(req, res, wikiSearch.title)
+				} else {
+					sendSMS(req, res, 'Error: No article found')
+				}
 		}
 	})
 }
