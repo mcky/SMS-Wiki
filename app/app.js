@@ -2,7 +2,7 @@ var express = require('express')
 	, bodyParser = require('body-parser')
 	, app = express()
 	, request = require('request')
-	, sanitizeHtml = require('sanitize-html');
+	, sanitizeHtml = require('sanitize-html')
 	, twilio = require('twilio');
 
 app.use(bodyParser.json())
