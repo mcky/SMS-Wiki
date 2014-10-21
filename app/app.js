@@ -5,6 +5,8 @@ var express = require('express')
 	, sanitizeHtml = require('sanitize-html')
 	, twilio = require('twilio');
 
+var port = process.env.PORT || 3000;
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
@@ -42,6 +44,6 @@ var wiki = function(req, res, query) {
 	})
 }
 
-var server = app.listen(3000, function() {
+var server = app.listen(port, function() {
 	console.log('Listening on port %d', server.address().port)
 })
