@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+app.get('/', function(req, res){
+	res.send('running')
+})
+
 app.route('/twilio')
 	.post(function(req,res){
 		console.log(req.body.Body)
