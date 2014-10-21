@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "^4.9.4",
+    "request": "^2.45.0",
+    "sanitize-html": "^1.4.3",
+    "twilio": "^1.7.0",
+    "xml": "^1.0.0"
+  }
+}
