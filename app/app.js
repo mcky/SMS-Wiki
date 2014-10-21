@@ -35,11 +35,14 @@ var wiki = function(req, res, query) {
 				, clean = sanitizeHtml(firstParagraph, {
 					allowedTags: []
 				})
+			console.log('wiki req made')
 
 			var twiml = new twilio.TwimlResponse();
 			twiml.message(clean);
 			res.writeHead(200, { 'Content-Type':'text/xml' });
 			res.end(twiml.toString());
+
+			console.log('twilio res made')
 		}
 	})
 }
